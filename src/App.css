@@ -96,3 +96,46 @@
 .delete-button:hover {
   background: #dc2626;
 }
+
+.task-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.task-form label {
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.task-form-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.task-form input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  background: #020617;
+  color: #f8fafc;
+}
+
+.task-form input::placeholder {
+  color: #64748b;
+}
+
+.task-form button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  background: #38bdf8;
+  color: #082f49;
+  font-weight: 800;
+}
+
+.task-form button:hover {
+  background: #7dd3fc;
+}

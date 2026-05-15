@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 
 const App = () => {
+  const [taskInput, setTaskInput] = useState('');
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -43,6 +44,30 @@ const App = () => {
     });
   };
 
+  const handleTaskInputChange = (e) => {
+    setTaskInput(e.target.value);
+  };
+
+  const handleAddTask = (e) => {
+    e.preventDefault();
+
+    if (taskInput.trim() === '') {
+      return;
+    }
+
+    const newTask = {
+      id: crypto.randomUUID(),
+      title: taskInput,
+      isComplete: false,
+    };
+
+    setTasks((prevTasks) => {
+      return [...prevTasks, newTask];
+    });
+
+    setTaskInput('');
+  };
+
   return (
     <main className="app">
       <section className="task-manager">
@@ -51,6 +76,22 @@ const App = () => {
         <p className="intro">
           Add, complete, delete, and filter tasks while practicing React state.
         </p>
+
+        <form className="task-form" onSubmit={handleAddTask}>
+          <label htmlFor="task-title">New Task</label>
+
+          <div className="task-form-row">
+            <input
+              type="text"
+              id="task-title"
+              value={taskInput}
+              onChange={handleTaskInputChange}
+              placeholder="Example: Review React Props"
+            />
+
+            <button type="submit">Add Task</button>
+          </div>
+        </form>
 
         <ul className="task-list">
           {tasks.map((task) => {
