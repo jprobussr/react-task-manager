@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 
 const App = () => {
+  const [filter, setFilter] = useState('all');
   const [taskInput, setTaskInput] = useState('');
   const [tasks, setTasks] = useState([
     {
@@ -68,6 +69,18 @@ const App = () => {
     setTaskInput('');
   };
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'active') {
+      return task.isComplete === false;
+    }
+
+    if (filter === 'completed') {
+      return task.isComplete === true;
+    }
+
+    return true;
+  });
+
   return (
     <main className="app">
       <section className="task-manager">
@@ -93,8 +106,44 @@ const App = () => {
           </div>
         </form>
 
+        <div className="filter-buttons">
+          <button
+            type="button"
+            className={
+              filter === 'all' ? 'filter-button active-filter' : 'filter-button'
+            }
+            onClick={() => setFilter('all')}
+          >
+            All
+          </button>
+
+          <button
+            type="button"
+            className={
+              filter === 'active'
+                ? 'filter-button active-filter'
+                : 'filter-button'
+            }
+            onClick={() => setFilter('active')}
+          >
+            Active
+          </button>
+
+          <button
+            type="button"
+            className={
+              filter === 'completed'
+                ? 'filter-button active-filter'
+                : 'filter-button'
+            }
+            onClick={() => setFilter('completed')}
+          >
+            Completed
+          </button>
+        </div>
+
         <ul className="task-list">
-          {tasks.map((task) => {
+          {filteredTasks.map((task) => {
             return (
               <li
                 className={`task-item ${task.isComplete ? 'task-item-complete' : ''}`}

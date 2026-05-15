@@ -88,13 +88,13 @@
   border: 0;
   border-radius: 999px;
   padding: 0.5rem 0.8rem;
-  background: #ef4444;
+  background: transparent;
   color: #fee2e2;
   font-weight: 700;
 }
 
 .delete-button:hover {
-  background: #dc2626;
+  background: #dc262683;
 }
 
 .task-form {
@@ -138,4 +138,29 @@
 
 .task-form button:hover {
   background: #7dd3fc;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.filter-button {
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.filter-button:hover {
+  background: #1e293b;
+}
+
+.active-filter {
+  border-color: #38bdf8;
+  background: #0c4a6e;
+  color: #e0f2fe;
 }
