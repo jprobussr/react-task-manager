@@ -151,47 +151,45 @@ const App = () => {
         </div>
 
         <div className="task-stats">
-          <span>
-            Total: {totalTasks}
-          </span>
-          <span>
-            Active: {activeTasks}
-          </span>
-          <span>
-            Completed: {completedTasks}
-          </span>
+          <span>Total: {totalTasks}</span>
+          <span>Active: {activeTasks}</span>
+          <span>Completed: {completedTasks}</span>
         </div>
 
-        <ul className="task-list">
-          {filteredTasks.map((task) => {
-            return (
-              <li
-                className={`task-item ${task.isComplete ? 'task-item-complete' : ''}`}
-                key={task.id}
-              >
-                <span>{task.title}</span>
+        {filteredTasks.length > 0 ? (
+          <ul className="task-list">
+            {filteredTasks.map((task) => {
+              return (
+                <li
+                  className={`task-item ${task.isComplete ? 'task-item-complete' : ''}`}
+                  key={task.id}
+                >
+                  <span>{task.title}</span>
 
-                <div className="task-actions">
-                  <button
-                    className="toggle-button"
-                    type="button"
-                    onClick={() => handleToggleTask(task.id)}
-                  >
-                    {task.isComplete ? 'Undo' : 'Complete'}
-                  </button>
+                  <div className="task-actions">
+                    <button
+                      className="toggle-button"
+                      type="button"
+                      onClick={() => handleToggleTask(task.id)}
+                    >
+                      {task.isComplete ? 'Undo' : 'Complete'}
+                    </button>
 
-                  <button
-                    className="delete-button"
-                    type="button"
-                    onClick={() => handleDeleteTask(task.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                    <button
+                      className="delete-button"
+                      type="button"
+                      onClick={() => handleDeleteTask(task.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="empty-message">No tasks match this filter.</p>
+        )}
       </section>
     </main>
   );

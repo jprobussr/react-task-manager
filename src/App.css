@@ -180,3 +180,12 @@
   padding: 0.5rem 0.8rem;
   background: #020617;
 }
+
+.empty-message {
+  margin: 2rem 0 0;
+  padding: 1rem;
+  border: 1px dashed #334155;
+  border-radius: 1rem;
+  color: #94a3b8;
+  text-align: center;
+}
