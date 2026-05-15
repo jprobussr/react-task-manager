@@ -164,3 +164,19 @@
   background: #0c4a6e;
   color: #e0f2fe;
 }
+
+.task-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.task-stats span {
+  border: 1px solid #1e293b;
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  background: #020617;
+}

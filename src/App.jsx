@@ -81,6 +81,14 @@ const App = () => {
     return true;
   });
 
+  const totalTasks = tasks.length;
+
+  const completedTasks = tasks.filter((task) => {
+    return task.isComplete;
+  }).length;
+
+  const activeTasks = totalTasks - completedTasks;
+
   return (
     <main className="app">
       <section className="task-manager">
@@ -140,6 +148,18 @@ const App = () => {
           >
             Completed
           </button>
+        </div>
+
+        <div className="task-stats">
+          <span>
+            Total: {totalTasks}
+          </span>
+          <span>
+            Active: {activeTasks}
+          </span>
+          <span>
+            Completed: {completedTasks}
+          </span>
         </div>
 
         <ul className="task-list">
