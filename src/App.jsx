@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import TaskItem from './components/TaskItem.jsx';
 import TaskForm from './components/TaskForm.jsx';
 import TaskFilter from './components/TaskFilter.jsx';
+import TaskStats from './components/TaskStats.jsx';
+import TaskList from './components/TaskList.jsx';
 
 const App = () => {
   const [filter, setFilter] = useState('all');
@@ -119,33 +121,19 @@ const App = () => {
           handleAddTask={handleAddTask}
         />
 
-        <TaskFilter
-          filter={filter}
-          setFilter={setFilter}
+        <TaskFilter filter={filter} setFilter={setFilter} />
+
+        <TaskStats
+          totalTasks={totalTasks}
+          activeTasks={activeTasks}
+          completedTasks={completedTasks}
         />
 
-        <div className="task-stats">
-          <span>Total: {totalTasks}</span>
-          <span>Active: {activeTasks}</span>
-          <span>Completed: {completedTasks}</span>
-        </div>
-
-        {filteredTasks.length > 0 ? (
-          <ul className="task-list">
-            {filteredTasks.map((task) => {
-              return (
-                <TaskItem
-                  key={task.id}
-                  task={task}
-                  handleToggleTask={handleToggleTask}
-                  handleDeleteTask={handleDeleteTask}
-                />
-              );
-            })}
-          </ul>
-        ) : (
-          <p className="empty-message">No tasks match this filter.</p>
-        )}
+        <TaskList
+          filteredTasks={filteredTasks}
+          handleToggleTask={handleToggleTask}
+          handleDeleteTask={handleDeleteTask}
+        />
       </section>
     </main>
   );
