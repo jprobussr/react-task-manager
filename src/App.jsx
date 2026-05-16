@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import TaskItem from './components/TaskItem.jsx';
+import TaskForm from './components/TaskForm.jsx';
 
 const App = () => {
   const [filter, setFilter] = useState('all');
@@ -111,21 +112,11 @@ const App = () => {
           Add, complete, delete, and filter tasks while practicing React state.
         </p>
 
-        <form className="task-form" onSubmit={handleAddTask}>
-          <label htmlFor="task-title">New Task</label>
-
-          <div className="task-form-row">
-            <input
-              type="text"
-              id="task-title"
-              value={taskInput}
-              onChange={handleTaskInputChange}
-              placeholder="Example: Review React Props"
-            />
-
-            <button type="submit">Add Task</button>
-          </div>
-        </form>
+        <TaskForm
+          taskInput={taskInput}
+          handleTaskInputChange={handleTaskInputChange}
+          handleAddTask={handleAddTask}
+        />
 
         <div className="filter-buttons">
           <button
