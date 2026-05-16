@@ -62,6 +62,20 @@ const App = () => {
     });
   };
 
+  const handleUpdateTask = (id, updatedTitle) => {
+    setTasks((prevTasks) => {
+      return prevTasks.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            title: updatedTitle,
+          };
+        }
+        return task;
+      });
+    });
+  };
+
   const handleTaskInputChange = (e) => {
     setTaskInput(e.target.value);
   };
@@ -130,9 +144,10 @@ const App = () => {
         />
 
         <TaskList
-          filteredTasks={filteredTasks}
+          tasks={filteredTasks}
           handleToggleTask={handleToggleTask}
           handleDeleteTask={handleDeleteTask}
+          handleUpdateTask={handleUpdateTask}
         />
       </section>
     </main>
