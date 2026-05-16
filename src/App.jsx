@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import TaskItem from './components/TaskItem.jsx';
 import TaskForm from './components/TaskForm.jsx';
+import TaskFilter from './components/TaskFilter.jsx';
 
 const App = () => {
   const [filter, setFilter] = useState('all');
@@ -118,41 +119,10 @@ const App = () => {
           handleAddTask={handleAddTask}
         />
 
-        <div className="filter-buttons">
-          <button
-            type="button"
-            className={
-              filter === 'all' ? 'filter-button active-filter' : 'filter-button'
-            }
-            onClick={() => setFilter('all')}
-          >
-            All
-          </button>
-
-          <button
-            type="button"
-            className={
-              filter === 'active'
-                ? 'filter-button active-filter'
-                : 'filter-button'
-            }
-            onClick={() => setFilter('active')}
-          >
-            Active
-          </button>
-
-          <button
-            type="button"
-            className={
-              filter === 'completed'
-                ? 'filter-button active-filter'
-                : 'filter-button'
-            }
-            onClick={() => setFilter('completed')}
-          >
-            Completed
-          </button>
-        </div>
+        <TaskFilter
+          filter={filter}
+          setFilter={setFilter}
+        />
 
         <div className="task-stats">
           <span>Total: {totalTasks}</span>
