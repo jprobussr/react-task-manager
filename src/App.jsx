@@ -1,26 +1,38 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const App = () => {
   const [filter, setFilter] = useState('all');
   const [taskInput, setTaskInput] = useState('');
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: 'Practice React State',
-      isComplete: false,
-    },
-    {
-      id: 2,
-      title: 'Build a task manager app',
-      isComplete: true,
-    },
-    {
-      id: 3,
-      title: 'Commit progress to GitHub',
-      isComplete: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks');
+
+    if (savedTasks) {
+      return JSON.parse(savedTasks);
+    }
+
+    return [
+      {
+        id: 1,
+        title: 'Practice React State',
+        isComplete: false,
+      },
+      {
+        id: 2,
+        title: 'Build a task manager app',
+        isComplete: true,
+      },
+      {
+        id: 3,
+        title: 'Commit progress to GitHub',
+        isComplete: false,
+      },
+    ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleToggleTask = (id) => {
     setTasks((prevTasks) => {
