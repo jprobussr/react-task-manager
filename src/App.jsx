@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import TaskItem from './components/TaskItem.jsx';
 
 const App = () => {
   const [filter, setFilter] = useState('all');
@@ -172,30 +173,12 @@ const App = () => {
           <ul className="task-list">
             {filteredTasks.map((task) => {
               return (
-                <li
-                  className={`task-item ${task.isComplete ? 'task-item-complete' : ''}`}
+                <TaskItem
                   key={task.id}
-                >
-                  <span>{task.title}</span>
-
-                  <div className="task-actions">
-                    <button
-                      className="toggle-button"
-                      type="button"
-                      onClick={() => handleToggleTask(task.id)}
-                    >
-                      {task.isComplete ? 'Undo' : 'Complete'}
-                    </button>
-
-                    <button
-                      className="delete-button"
-                      type="button"
-                      onClick={() => handleDeleteTask(task.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </li>
+                  task={task}
+                  handleToggleTask={handleToggleTask}
+                  handleDeleteTask={handleDeleteTask}
+                />
               );
             })}
           </ul>
